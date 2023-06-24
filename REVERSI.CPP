@@ -1,8 +1,9 @@
 #include <iostream>
 #include "conio.h"
-#include <graphics.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+using namespace std;
 
 class cuadrotablero {
   private: int cx;
@@ -59,7 +60,7 @@ int movimiento(cuadrotablero t[8][8], cuadrotablero B, int jug);
 void pintarmarcador(int, int, int);
 void sonido(int error);
 
-void main() {
+int main() {
   iniciargraficos();
   leyendas();
   FILE * temp;
