@@ -8,6 +8,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${fileDirname}/Drawer.cpp",
+                "${fileDirname}/CuadroTablero.cpp",
+                "${fileDirname}/Tablero.cpp",
                 "${file}",
                 "-w",
                 "-lSDL2",

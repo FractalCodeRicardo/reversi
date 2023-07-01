@@ -6,10 +6,11 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include <iostream>
 #include "Drawer.h"
+#include "Tablero.h"
 using namespace std;
 
-const int SCREEN_WIDTH = 500;
-const int SCREEN_HEIGHT = 500;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 800;
 
 bool initSDL()
 {
@@ -49,7 +50,7 @@ SDL_Renderer *createRenderer(SDL_Window *window)
 	return renderer;
 }
 
-void drawLoop(SDL_Renderer *renderer)
+void drawLoop(Tablero *tablero, Drawer *drawer, SDL_Renderer *renderer)
 {
 	SDL_Event event;
 
@@ -61,19 +62,24 @@ void drawLoop(SDL_Renderer *renderer)
 			break;
 		}
 
-		SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 		SDL_RenderClear(renderer);
 
-		Drawer *drawer = new Drawer();
-		drawer->setRenderer(renderer);
+		drawer->setColor(Drawer::WHITE);
+		tablero->pintarCuadros();
+		//drawer->setColor(Drawer::WHITE);
 
-		drawer->circle(100, 100, 5);
+		//drawer->rectangle(100, 100, 5);
+		//drawer->setColor(Drawer::WHITE);
+		
+		//drawer->circle(100, 100, 50);
+		//drawer->rectangle(0, 0, 150, 150);
+		drawer->setColor(Drawer::BLACK);
 
 		SDL_RenderPresent(renderer);
 	}
 }
 
-void quit(SDL_Window *window, SDL_Renderer *renderer) 
+void quit(SDL_Window *window, SDL_Renderer *renderer)
 {
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
@@ -94,7 +100,13 @@ int main(int argc, char *args[])
 	if (!renderer)
 		return 3;
 
-	drawLoop(renderer);
+	Drawer *drawer = new Drawer();
+	drawer->setRenderer(renderer);
+
+	Tablero *tablero = new Tablero();
+	tablero->setDrawer(drawer);
+
+	drawLoop(tablero, drawer, renderer);
 	quit(window, renderer);
 
 	return 0;

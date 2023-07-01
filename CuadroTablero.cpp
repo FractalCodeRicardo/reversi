@@ -8,7 +8,7 @@ CuadroTablero::CuadroTablero()
     circulo = 0;
 }
 
-CuadroTablero::setDrawer(Drawer *drawer)
+void CuadroTablero::setDrawer(Drawer *drawer)
 {
     this->drawer = drawer;
 }
@@ -28,7 +28,7 @@ int CuadroTablero::Oc()
     return circulo;
 }
 
-void CuadroTablero::Cc(int g)
+int CuadroTablero::Cc(int g)
 {
     circulo = g;
 }
@@ -54,22 +54,18 @@ void CuadroTablero::asignarcirculo(int c)
 
 void CuadroTablero::pintarcuadro(int color)
 {
-    //setcolor(color);
+    this->drawer->setColor(Drawer::GRAY);
     this->drawer->rectangle(cx - 24, cy - 24, cx + 24, cy + 24);
 
     if (circulo == 1)
     {
-        //setcolor(WHITE);
-        //setfillstyle(SOLID_FILL, LIGHTGRAY);
+        this->drawer->setColor(Drawer::GREEN);
         this->drawer->circle(cx, cy, 15);
-        //floodfill(cx, cy, getmaxcolor());
     }
 
     if (circulo == 2)
     {
-        //setcolor(WHITE);
-        //setfillstyle(SOLID_FILL, DARKGRAY);
+        this->drawer->setColor(Drawer::RED);
         this->drawer->circle(cx, cy, 15);
-       // floodfill(cx, cy, getmaxcolor());
     }
 }

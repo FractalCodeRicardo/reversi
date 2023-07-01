@@ -21,6 +21,8 @@ public:
     int Oc();
     int Cc(int g);
     void cambiarcirculo();
-    void cambiarcoordenada();
+    void cambiarcoordenada(int x, int y);
     void asignarcirculo(int c);
 };
+
+#endif
