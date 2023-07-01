@@ -15,6 +15,8 @@ public:
     Tablero();
     void setDrawer(Drawer *drawer);
     void pintarCuadros();
+    void pintarCuadro(int x, int y, int color);
+    void pintarCuadroSeleccion(int x, int y, int color);
 };
 
 #endif

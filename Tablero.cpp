@@ -28,9 +28,20 @@ void Tablero::pintarCuadros()
     {
         for (int y = 0; y < 8; y++)
         {
-            CuadroTablero cuadro = cuadros[y][x];
-            cuadro.cambiarcoordenada(y + 1, x + 1); // cambia las coordenadas mandadas por el centro de cada cuadro
-            cuadro.pintarcuadro(Drawer::WHITE);     // se imaginan que hace no ? :P
+            pintarCuadro(x, y, Drawer::GRAY);
         }
     }
+}
+
+void Tablero::pintarCuadro(int x, int y, int color) {
+    CuadroTablero cuadro = cuadros[y][x];
+    cuadro.cambiarcoordenada(y + 1, x + 1);
+    cuadro.pintarcuadro(color);     
+}
+
+
+void Tablero::pintarCuadroSeleccion(int x, int y, int color) {
+    CuadroTablero cuadro = cuadros[y][x];
+    cuadro.cambiarcoordenada(y + 1, x + 1);
+    cuadro.pintarCuadroSeleccion(color);     
 }

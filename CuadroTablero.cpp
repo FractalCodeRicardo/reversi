@@ -54,7 +54,7 @@ void CuadroTablero::asignarcirculo(int c)
 
 void CuadroTablero::pintarcuadro(int color)
 {
-    this->drawer->setColor(Drawer::GRAY);
+    this->drawer->setColor(color);
     this->drawer->rectangle(cx - 24, cy - 24, cx + 24, cy + 24);
 
     if (circulo == 1)
@@ -68,4 +68,10 @@ void CuadroTablero::pintarcuadro(int color)
         this->drawer->setColor(Drawer::RED);
         this->drawer->circle(cx, cy, 15);
     }
+}
+
+void CuadroTablero::pintarCuadroSeleccion(int color)
+{
+    this->drawer->setColor(color);
+    this->drawer->rectangle(cx - 20, cy - 20, cx + 20, cy + 20);
 }

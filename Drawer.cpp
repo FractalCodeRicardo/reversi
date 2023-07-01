@@ -65,7 +65,7 @@ void Drawer::setColor(int color)
 
     if (color == Drawer::GRAY)
     {
-        SDL_SetRenderDrawColor(renderer, 200, 200, 200, 200);
+        SDL_SetRenderDrawColor(renderer, 160, 160, 160, 0);
         return;
     }
 
@@ -84,6 +84,12 @@ void Drawer::setColor(int color)
     if (color == Drawer::RED)
     {
         SDL_SetRenderDrawColor(renderer, 200, 0, 111, 0);
+        return;
+    }
+
+    if (color == Drawer::YELLOW)
+    {
+        SDL_SetRenderDrawColor(renderer, 204, 223, 0, 0);
         return;
     }
 }

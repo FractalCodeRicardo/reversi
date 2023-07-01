@@ -16,6 +16,7 @@ public:
     CuadroTablero();
     void setDrawer(Drawer *drawer);
     void pintarcuadro(int);
+    void pintarCuadroSeleccion(int);
     int Ocx();
     int Ocy();
     int Oc();

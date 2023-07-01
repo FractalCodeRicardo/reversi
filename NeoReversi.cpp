@@ -6,7 +6,7 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include <iostream>
 #include "Drawer.h"
-#include "Tablero.h"
+#include "Game.h"
 using namespace std;
 
 const int SCREEN_WIDTH = 800;
@@ -50,29 +50,64 @@ SDL_Renderer *createRenderer(SDL_Window *window)
 	return renderer;
 }
 
-void drawLoop(Tablero *tablero, Drawer *drawer, SDL_Renderer *renderer)
+
+
+SDL_Event getEvent()
 {
 	SDL_Event event;
+	SDL_WaitEvent(&event);
+
+	return event;
+}
+
+void handleKeyboardEvents(Game *game, Uint32 eventType, SDL_KeyboardEvent key)
+{
+	Cursor *cursor = game->getCursor();
+
+	if (eventType != SDL_KEYDOWN)
+		return;
+	
+	SDL_Scancode code = key.keysym.scancode;
+
+	if (code == SDL_SCANCODE_DOWN)
+		cursor->abajo();
+
+	if (code == SDL_SCANCODE_UP)
+		cursor->arriba();
+
+	if (code == SDL_SCANCODE_RIGHT)
+		cursor->derecha();
+
+	if (code == SDL_SCANCODE_LEFT)
+		cursor->izquierda();
+
+	if (code == SDL_SCANCODE_KP_ENTER || code == SDL_SCANCODE_RETURN)
+		game->seleccionar(cursor->getX(), cursor->getY());
+
+	if (code == SDL_SCANCODE_ESCAPE)
+		game->deseleccionar();
+
+}
+
+void drawLoop(Game *game, Drawer *drawer, SDL_Renderer *renderer)
+{
 
 	while (true)
 	{
-		SDL_PollEvent(&event);
+		SDL_Event event = getEvent();
 		if (event.type == SDL_QUIT)
 		{
 			break;
 		}
 
+		handleKeyboardEvents(game, event.type, event.key);
+
 		SDL_RenderClear(renderer);
 
-		drawer->setColor(Drawer::WHITE);
-		tablero->pintarCuadros();
-		//drawer->setColor(Drawer::WHITE);
+		game->pintarTablero();
+		game->pintarCursor();
+		game->pintarSeleccion();
 
-		//drawer->rectangle(100, 100, 5);
-		//drawer->setColor(Drawer::WHITE);
-		
-		//drawer->circle(100, 100, 50);
-		//drawer->rectangle(0, 0, 150, 150);
 		drawer->setColor(Drawer::BLACK);
 
 		SDL_RenderPresent(renderer);
@@ -103,10 +138,10 @@ int main(int argc, char *args[])
 	Drawer *drawer = new Drawer();
 	drawer->setRenderer(renderer);
 
-	Tablero *tablero = new Tablero();
-	tablero->setDrawer(drawer);
+	Game *game = new Game();
+	game->setDrawer(drawer);
 
-	drawLoop(tablero, drawer, renderer);
+	drawLoop(game, drawer, renderer);
 	quit(window, renderer);
 
 	return 0;

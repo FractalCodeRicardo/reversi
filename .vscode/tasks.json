@@ -10,6 +10,8 @@
                 "${fileDirname}/Drawer.cpp",
                 "${fileDirname}/CuadroTablero.cpp",
                 "${fileDirname}/Tablero.cpp",
+                "${fileDirname}/Cursor.cpp",
+                "${fileDirname}/Game.cpp",
                 "${file}",
                 "-w",
                 "-lSDL2",
