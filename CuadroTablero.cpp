@@ -1,39 +1,39 @@
-#include "cuadrotablero.h"
+#include "CuadroTablero.h"
 #include "Drawer.h"
 
-cuadrotablero::cuadrotablero()
+CuadroTablero::CuadroTablero()
 {
     cx = -1;
     cy = -1;
     circulo = 0;
 }
 
-cuadrotablero::setDrawer(Drawer *drawer)
+CuadroTablero::setDrawer(Drawer *drawer)
 {
     this->drawer = drawer;
 }
 
-int cuadrotablero::Ocx()
+int CuadroTablero::Ocx()
 {
     return cx;
 }
 
-int cuadrotablero::Ocy()
+int CuadroTablero::Ocy()
 {
     return cy;
 }
 
-int cuadrotablero::Oc()
+int CuadroTablero::Oc()
 {
     return circulo;
 }
 
-void cuadrotablero::Cc(int g)
+void CuadroTablero::Cc(int g)
 {
     circulo = g;
 }
 
-void cuadrotablero::cambiarcirculo()
+void CuadroTablero::cambiarcirculo()
 {
     if (circulo == 1)
         circulo = 2;
@@ -41,18 +41,18 @@ void cuadrotablero::cambiarcirculo()
         circulo = 1;
 }
 
-void cuadrotablero::cambiarcoordenada(int y, int x)
+void CuadroTablero::cambiarcoordenada(int y, int x)
 {
     cx = x * 50;
     cy = y * 50;
 }
 
-void cuadrotablero::asignarcirculo(int c)
+void CuadroTablero::asignarcirculo(int c)
 { // si circulo=1 es blanco, si circulo=2 es negro, si circulo=0 no hay nada
     circulo = c;
 }
 
-void cuadrotablero::pintarcuadro(int color)
+void CuadroTablero::pintarcuadro(int color)
 {
     //setcolor(color);
     this->drawer->rectangle(cx - 24, cy - 24, cx + 24, cy + 24);
