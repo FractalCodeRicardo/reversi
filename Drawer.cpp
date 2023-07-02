@@ -97,7 +97,7 @@ void Drawer::setColor(int color)
 
 void Drawer::text(int x, int y, int size, char* texto)
 {
-    TTF_Font *Sans = TTF_OpenFont("Sans.ttf", size);
+    /*TTF_Font *Sans = TTF_OpenFont("Sans.ttf", size);
     SDL_Color White = {255, 255, 255};
     SDL_Surface *surfaceMessage =
         TTF_RenderText_Solid(Sans, texto, White);
@@ -113,5 +113,5 @@ void Drawer::text(int x, int y, int size, char* texto)
     SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 
     SDL_FreeSurface(surfaceMessage);
-    SDL_DestroyTexture(Message);
+    SDL_DestroyTexture(Message);*/
 }
