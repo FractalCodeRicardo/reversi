@@ -8,7 +8,7 @@ CuadroTablero::CuadroTablero()
     circulo = 0;
 }
 
-void CuadroTablero::setDrawer(Drawer *drawer)
+void CuadroTablero::setDrawer(Drawer* drawer)
 {
     this->drawer = drawer;
 }
@@ -41,7 +41,7 @@ void CuadroTablero::cambiarcirculo()
         circulo = 1;
 }
 
-void CuadroTablero::cambiarcoordenada(int y, int x)
+void CuadroTablero::cambiarcoordenada(int x, int y)
 {
     cx = x * 50;
     cy = y * 50;

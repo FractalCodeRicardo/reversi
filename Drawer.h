@@ -16,9 +16,8 @@ public:
     
     void rectangle(int x1, int y1, int x2, int y2);
     void circle(int x, int y, int radius);
-    void setRenderer(SDL_Renderer *renderer);
+    void setRenderer(SDL_Renderer* renderer);
     void setColor(int color);
-    void setScale(int scale);
 
 private:
     SDL_Renderer *renderer;

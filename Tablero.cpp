@@ -1,6 +1,7 @@
 #include "Tablero.h"
 #include "Drawer.h"
 
+
 Tablero::Tablero()
 {
     cuadros[3][3].asignarcirculo(1); // poniendo las primeras fichas en el tablero
@@ -34,14 +35,20 @@ void Tablero::pintarCuadros()
 }
 
 void Tablero::pintarCuadro(int x, int y, int color) {
-    CuadroTablero cuadro = cuadros[y][x];
-    cuadro.cambiarcoordenada(y + 1, x + 1);
+    CuadroTablero cuadro = cuadros[x][y];
+    cuadro.cambiarcoordenada( x + 1, y + 1);
     cuadro.pintarcuadro(color);     
 }
 
 
 void Tablero::pintarCuadroSeleccion(int x, int y, int color) {
-    CuadroTablero cuadro = cuadros[y][x];
-    cuadro.cambiarcoordenada(y + 1, x + 1);
+    CuadroTablero cuadro = cuadros[x][y];
+    cuadro.cambiarcoordenada(x + 1, y + 1);
     cuadro.pintarCuadroSeleccion(color);     
 }
+
+CuadroTablero &Tablero::cuadro(int x, int y)
+{
+    return cuadros[x][y];
+}
+

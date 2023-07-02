@@ -1,7 +1,7 @@
 #include "Drawer.h"
 #include "SDL2/SDL.h"
 
-void Drawer::setRenderer(SDL_Renderer *renderer)
+void Drawer::setRenderer(SDL_Renderer* renderer)
 {
     this->renderer = renderer;
 }

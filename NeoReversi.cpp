@@ -62,7 +62,7 @@ SDL_Event getEvent()
 
 void handleKeyboardEvents(Game *game, Uint32 eventType, SDL_KeyboardEvent key)
 {
-	Cursor *cursor = game->getCursor();
+	Cursor &cursor = game->getCursor();
 
 	if (eventType != SDL_KEYDOWN)
 		return;
@@ -70,19 +70,24 @@ void handleKeyboardEvents(Game *game, Uint32 eventType, SDL_KeyboardEvent key)
 	SDL_Scancode code = key.keysym.scancode;
 
 	if (code == SDL_SCANCODE_DOWN)
-		cursor->abajo();
+		cursor.abajo();
 
 	if (code == SDL_SCANCODE_UP)
-		cursor->arriba();
+		cursor.arriba();
 
 	if (code == SDL_SCANCODE_RIGHT)
-		cursor->derecha();
+		cursor.derecha();
 
 	if (code == SDL_SCANCODE_LEFT)
-		cursor->izquierda();
+		cursor.izquierda();
 
-	if (code == SDL_SCANCODE_KP_ENTER || code == SDL_SCANCODE_RETURN)
-		game->seleccionar(cursor->getX(), cursor->getY());
+	if (code == SDL_SCANCODE_KP_ENTER || code == SDL_SCANCODE_RETURN) {
+		int numMovtos = game->realizarMovimiento();
+		if (numMovtos > 0) {
+			game->cambiarTurno();
+		}
+	}
+		
 
 	if (code == SDL_SCANCODE_ESCAPE)
 		game->deseleccionar();

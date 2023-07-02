@@ -10,11 +10,11 @@ private:
     int cx;
     int cy;
     int circulo;
-    Drawer *drawer;
+    Drawer* drawer;
 
 public:
     CuadroTablero();
-    void setDrawer(Drawer *drawer);
+    void setDrawer(Drawer* drawer);
     void pintarcuadro(int);
     void pintarCuadroSeleccion(int);
     int Ocx();
