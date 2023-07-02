@@ -2,6 +2,9 @@
 #define DRAWER_H
 
 #include "SDL2/SDL.h"
+#include <string>
+
+using namespace std;
 
 class Drawer
 {
@@ -18,6 +21,7 @@ public:
     void circle(int x, int y, int radius);
     void setRenderer(SDL_Renderer* renderer);
     void setColor(int color);
+    void text(int x, int y, int size, char* text);
 
 private:
     SDL_Renderer *renderer;

@@ -112,6 +112,7 @@ void drawLoop(Game *game, Drawer *drawer, SDL_Renderer *renderer)
 		game->pintarTablero();
 		game->pintarCursor();
 		game->pintarSeleccion();
+		game->pintarMarcador();
 
 		drawer->setColor(Drawer::BLACK);
 

@@ -17,7 +17,10 @@ public:
     void pintarCuadros();
     void pintarCuadro(int x, int y, int color);
     void pintarCuadroSeleccion(int x, int y, int color);
-    CuadroTablero& cuadro(int x, int y);
+    int cantidadFichasNegras();
+    int cantidadFichasBlancas();
+    int cantidadFichas(int jugador);
+    CuadroTablero &cuadro(int x, int y);
 };
 
 #endif

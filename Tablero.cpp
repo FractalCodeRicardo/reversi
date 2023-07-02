@@ -1,6 +1,6 @@
 #include "Tablero.h"
 #include "Drawer.h"
-
+#include "Jugador.h"
 
 Tablero::Tablero()
 {
@@ -34,17 +34,18 @@ void Tablero::pintarCuadros()
     }
 }
 
-void Tablero::pintarCuadro(int x, int y, int color) {
-    CuadroTablero cuadro = cuadros[x][y];
-    cuadro.cambiarcoordenada( x + 1, y + 1);
-    cuadro.pintarcuadro(color);     
-}
-
-
-void Tablero::pintarCuadroSeleccion(int x, int y, int color) {
+void Tablero::pintarCuadro(int x, int y, int color)
+{
     CuadroTablero cuadro = cuadros[x][y];
     cuadro.cambiarcoordenada(x + 1, y + 1);
-    cuadro.pintarCuadroSeleccion(color);     
+    cuadro.pintarcuadro(color);
+}
+
+void Tablero::pintarCuadroSeleccion(int x, int y, int color)
+{
+    CuadroTablero cuadro = cuadros[x][y];
+    cuadro.cambiarcoordenada(x + 1, y + 1);
+    cuadro.pintarCuadroSeleccion(color);
 }
 
 CuadroTablero &Tablero::cuadro(int x, int y)
@@ -52,3 +53,30 @@ CuadroTablero &Tablero::cuadro(int x, int y)
     return cuadros[x][y];
 }
 
+int Tablero::cantidadFichasNegras()
+{
+    return cantidadFichas((int)Jugador::NEGRO);
+}
+
+int Tablero::cantidadFichasBlancas()
+{
+    return cantidadFichas((int)Jugador::BLANCO);
+}
+
+int Tablero::cantidadFichas(int jugador)
+{
+    int cantidad = 0;
+
+    for (int x = 0; x < 8; x++)    
+        for (int y = 0; y < 8; y++)
+        {
+            CuadroTablero cuadro= cuadros[x][y];
+
+            if (cuadro.Oc() == jugador) {
+                cantidad++;
+            }
+        }
+    
+
+    return cantidad;
+}

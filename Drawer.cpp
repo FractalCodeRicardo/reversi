@@ -1,7 +1,8 @@
 #include "Drawer.h"
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_ttf.h"
 
-void Drawer::setRenderer(SDL_Renderer* renderer)
+void Drawer::setRenderer(SDL_Renderer *renderer)
 {
     this->renderer = renderer;
 }
@@ -92,4 +93,25 @@ void Drawer::setColor(int color)
         SDL_SetRenderDrawColor(renderer, 204, 223, 0, 0);
         return;
     }
+}
+
+void Drawer::text(int x, int y, int size, char* texto)
+{
+    TTF_Font *Sans = TTF_OpenFont("Sans.ttf", size);
+    SDL_Color White = {255, 255, 255};
+    SDL_Surface *surfaceMessage =
+        TTF_RenderText_Solid(Sans, texto, White);
+
+    SDL_Texture *Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+
+    SDL_Rect Message_rect;
+    Message_rect.x = x;
+    Message_rect.y = y;
+    Message_rect.w = 100;
+    Message_rect.h = 100;
+
+    SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+
+    SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(Message);
 }

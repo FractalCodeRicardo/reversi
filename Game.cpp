@@ -85,7 +85,7 @@ int Game::realizarMovimiento()
 {
     int x = cursor.getX();
     int y = cursor.getY();
-    Jugador turno = this ->turno;
+    Jugador turno = this->turno;
 
     list<Posicion> arriba = obtenerLinea(x, y, 0, -1);
     list<Posicion> abajo = obtenerLinea(x, y, 0, 1);
@@ -118,10 +118,11 @@ int Game::realizarMovimiento()
         cuadro.cambiarcirculo();
     }
 
-    if(cambios.size()>0) {
+    if (cambios.size() > 0)
+    {
         CuadroTablero &cuadro = tablero.cuadro(cursor.getX(), cursor.getY());
         cuadro.asignarcirculo((int)turno);
-    } 
+    }
 
     return cambios.size();
 }
@@ -142,7 +143,8 @@ list<Posicion> Game::obtenerCambios(list<Posicion> &lista, Jugador turno)
             break;
 
         int turnoInt = (int)turno;
-        if (cuadro.Oc() == turnoInt) {
+        if (cuadro.Oc() == turnoInt)
+        {
             tieneDelMismoColor = true;
             break;
         }
@@ -156,7 +158,8 @@ list<Posicion> Game::obtenerCambios(list<Posicion> &lista, Jugador turno)
         }
     }
 
-    if (!tieneDelMismoColor) {
+    if (!tieneDelMismoColor)
+    {
         cambios.clear();
     }
 
@@ -189,10 +192,23 @@ list<Posicion> Game::obtenerLinea(int x, int y, int incrementoX, int incrementoY
     return lista;
 }
 
-void Game::cambiarTurno() {
-    if (turno == Jugador::NEGRO){
+void Game::cambiarTurno()
+{
+    if (turno == Jugador::NEGRO)
+    {
         turno = Jugador::BLANCO;
-    } else {
+    }
+    else
+    {
         turno = Jugador::NEGRO;
     }
+}
+
+void Game::pintarMarcador()
+{
+    int cantidadNegras = tablero.cantidadFichasNegras();
+    int cantidadBlancas = tablero.cantidadFichasBlancas();
+
+    drawer->text(500, 20, 11, "NEGRAS: ");
+    drawer->text(500, 20, 11, "BLANCAS: ");
 }

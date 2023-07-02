@@ -36,6 +36,7 @@ class Game {
     bool fueraDelTablero(int x, int y);
     list<Posicion> obtenerLinea(int x, int y, int ix, int iy);
     void cambiarTurno();
+    void pintarMarcador();
 };
 
 #endif
