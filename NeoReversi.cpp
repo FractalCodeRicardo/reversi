@@ -51,7 +51,6 @@ SDL_Renderer *createRenderer(SDL_Window *window)
 }
 
 
-
 SDL_Event getEvent()
 {
 	SDL_Event event;

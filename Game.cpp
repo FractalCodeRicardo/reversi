@@ -27,7 +27,7 @@ Tablero &Game::getTablero()
 
 void Game::setDrawer(Drawer *drawer)
 {
-    drawer = drawer;
+    this->drawer = drawer;
     tablero.setDrawer(drawer);
 }
 
@@ -209,6 +209,6 @@ void Game::pintarMarcador()
     int cantidadNegras = tablero.cantidadFichasNegras();
     int cantidadBlancas = tablero.cantidadFichasBlancas();
 
-    drawer->text(500, 20, 11, "NEGRAS: ");
-    drawer->text(500, 20, 11, "BLANCAS: ");
+    drawer->text(100, 100, 11, "NEGRAS: ");
+    drawer->text(100, 100, 11, "BLANCAS: ");
 }
