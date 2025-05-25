@@ -5,7 +5,7 @@
 #include "Cursor.h"
 #include "Drawer.h"
 #include "Posicion.h"
-#include "Jugador.h"
+#include "Player.h"
 #include <list>
 
 using namespace std;
@@ -18,7 +18,7 @@ class Game {
     Drawer* drawer;
     Posicion *seleccion;
 
-    Jugador turno;
+    Player turno;
     
     public:
     Game();
@@ -32,7 +32,7 @@ class Game {
     void seleccionar(int x, int y);
     void deseleccionar();
     int realizarMovimiento();
-    list<Posicion> obtenerCambios(list<Posicion>& lista, Jugador turno);
+    list<Posicion> obtenerCambios(list<Posicion>& lista, Player turno);
     bool fueraDelTablero(int x, int y);
     list<Posicion> obtenerLinea(int x, int y, int ix, int iy);
     void cambiarTurno();

@@ -3,7 +3,7 @@
 
 #include "Drawer.h"
 
-class CuadroTablero
+class Square
 {
     
 private:
@@ -13,7 +13,7 @@ private:
     Drawer* drawer;
 
 public:
-    CuadroTablero();
+    Square();
     void setDrawer(Drawer* drawer);
     void pintarcuadro(int);
     void pintarCuadroSeleccion(int);

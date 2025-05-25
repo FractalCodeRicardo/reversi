@@ -3,7 +3,7 @@
 #include "Drawer.h"
 #include "Cursor.h"
 #include "Posicion.h"
-#include "Jugador.h"
+#include "Player.h"
 #include <iostream>
 #include <list>
 
@@ -12,7 +12,7 @@ using namespace std;
 Game::Game()
 {
     seleccion = NULL;
-    turno = Jugador::BLANCO;
+    turno = Player::BLANCO;
 }
 
 Cursor &Game::getCursor()
@@ -85,7 +85,7 @@ int Game::realizarMovimiento()
 {
     int x = cursor.getX();
     int y = cursor.getY();
-    Jugador turno = this->turno;
+    Player turno = this->turno;
 
     list<Posicion> arriba = obtenerLinea(x, y, 0, -1);
     list<Posicion> abajo = obtenerLinea(x, y, 0, 1);
@@ -113,21 +113,21 @@ int Game::realizarMovimiento()
     {
         int x = it->x;
         int y = it->y;
-        CuadroTablero &cuadro = tablero.cuadro(x, y);
+        Square &cuadro = tablero.cuadro(x, y);
 
         cuadro.cambiarcirculo();
     }
 
     if (cambios.size() > 0)
     {
-        CuadroTablero &cuadro = tablero.cuadro(cursor.getX(), cursor.getY());
+        Square &cuadro = tablero.cuadro(cursor.getX(), cursor.getY());
         cuadro.asignarcirculo((int)turno);
     }
 
     return cambios.size();
 }
 
-list<Posicion> Game::obtenerCambios(list<Posicion> &lista, Jugador turno)
+list<Posicion> Game::obtenerCambios(list<Posicion> &lista, Player turno)
 {
     list<Posicion> cambios;
     list<Posicion>::iterator it;
@@ -137,7 +137,7 @@ list<Posicion> Game::obtenerCambios(list<Posicion> &lista, Jugador turno)
         int x = it->x;
         int y = it->y;
 
-        CuadroTablero &cuadro = tablero.cuadro(x, y);
+        Square &cuadro = tablero.cuadro(x, y);
 
         if (cuadro.Oc() == 0)
             break;
@@ -194,13 +194,13 @@ list<Posicion> Game::obtenerLinea(int x, int y, int incrementoX, int incrementoY
 
 void Game::cambiarTurno()
 {
-    if (turno == Jugador::NEGRO)
+    if (turno == Player::NEGRO)
     {
-        turno = Jugador::BLANCO;
+        turno = Player::BLANCO;
     }
     else
     {
-        turno = Jugador::NEGRO;
+        turno = Player::NEGRO;
     }
 }
 
