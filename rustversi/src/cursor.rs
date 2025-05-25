@@ -1,10 +1,9 @@
-struct Cursor {
-    x: u8,
-    y: u8,
+pub struct Cursor {
+   pub x: u8,
+   pub y: u8,
 }
 
 impl Cursor {
-
     fn new(x: u8, y: u8) -> Self {
         Cursor { x, y }
     }
@@ -41,25 +40,16 @@ impl Cursor {
         }
     }
 
-    fn get_x(&self) -> u8 {
-        self.x
-    }
-
-    fn get_y(&self) -> u8 {
-        self.y
-    }
 }
 
-fn main() {
-    // Create a new Cursor instance at position (0, 0)
-    let mut cursor = Cursor::new(0, 0);
+#[cfg(test)]
+mod tests {
+    use super::Cursor;
 
-    // Move the cursor in various directions
-    cursor.derecha();
-    cursor.abajo();
-    cursor.izquierda();
-    cursor.arriba();
-
-    // Print the current position of the cursor
-    println!("Cursor position: ({}, {})", cursor.get_x(), cursor.get_y());
+    #[test]
+    fn cusor_up() {
+        let mut cursor = Cursor::new(0, 1);
+        cursor.up();
+        assert_eq!(cursor.y, 0);
+    }
 }
