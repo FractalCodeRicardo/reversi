@@ -16,6 +16,8 @@ impl Game {
     fn new() -> Self {
         Game {
             selection: None,
+            cursor: Cursor::new(0,0),
+            board: Board::new(),
             currentPlayer: Player::White
         }
     }

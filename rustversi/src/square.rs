@@ -1,4 +1,4 @@
-#[derive(Default)]
+#[derive(Clone, Copy, Debug)]
 pub struct Square
 {
     pub x: i8,

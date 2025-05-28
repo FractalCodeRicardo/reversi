@@ -6,16 +6,14 @@ pub struct Board {
 
 impl Board {
     fn new() -> Self {
-        // let mut squares = [[Square::default(); 8]; 8];
-        //
-        // for row in 0..8 {
-        //     for col in 0..8 {
-        //         let iRow: i8 = row;
-        //         let iCol: i8= col;
-        //         squares[row][col] = Square::new(iRow, iCol); // or any constructor
-        //     }
-        // }
-        //
-        // Board { squares }
+        let mut squares = [[Square{x: 0, y:0}; 8]; 8];
+
+        for row in 0..8 {
+            for col in 0..8 {
+                squares[row][col] = Square::new(row as i8, col as i8); // or any constructor
+            }
+        }
+
+        Board { squares }
     }
 }
