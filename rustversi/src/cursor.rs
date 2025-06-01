@@ -4,7 +4,7 @@ pub struct Cursor {
 }
 
 impl Cursor {
-    fn new(x: u8, y: u8) -> Self {
+    pub fn new(x: u8, y: u8) -> Self {
         Cursor { x, y }
     }
 

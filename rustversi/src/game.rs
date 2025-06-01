@@ -1,19 +1,19 @@
-use board::Board;
-use cursor::Cursor;
-use position::Position;
-use player::Player;
+use crate::board::Board;
+use crate::cursor::Cursor;
+use crate::position::Position;
+use crate::player::Player;
 
 pub struct Game
 {
-    board: Board,
-    cursor: Cursor,
-    selection: Option<Position>,
-    currentPlayer: Player
+    pub board: Board,
+    pub cursor: Cursor,
+    pub selection: Option<Position>,
+    pub currentPlayer: Player
 }
 
 impl Game {
    
-    fn new() -> Self {
+    pub fn new() -> Self {
         Game {
             selection: None,
             cursor: Cursor::new(0,0),
