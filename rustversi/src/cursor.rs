@@ -8,7 +8,7 @@ impl Cursor {
         Cursor { x, y }
     }
 
-    fn down(&mut self) {
+    pub fn down(&mut self) {
         if self.y == 7 {
             self.y = 0;
         } else {
@@ -16,7 +16,7 @@ impl Cursor {
         }
     }
 
-    fn up(&mut self) {
+    pub fn up(&mut self) {
         if self.y == 0 {
             self.y = 7;
         } else {
@@ -24,7 +24,7 @@ impl Cursor {
         }
     }
 
-    fn right(&mut self) {
+    pub fn right(&mut self) {
         if self.x == 7 {
             self.x = 0;
         } else {
@@ -32,7 +32,7 @@ impl Cursor {
         }
     }
 
-    fn left(&mut self) {
+    pub fn left(&mut self) {
         if self.x == 0 {
             self.x = 7;
         } else {
