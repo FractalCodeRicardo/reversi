@@ -23,4 +23,16 @@ impl Square {
     pub fn has_player(&self) -> bool {
         return self.circle != Player::None;
     }
+
+    pub fn change_player(& mut self) {
+        if self.circle == Player::None  {
+            return;
+        }
+
+        if self.circle == Player::White {
+            self.set_player(Player::Black);
+        } else {
+            self.set_player(Player::White);
+        }
+    }
 }

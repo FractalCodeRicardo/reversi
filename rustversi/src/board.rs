@@ -1,7 +1,7 @@
-use crate::{player::Player, square::Square};
+use crate::{player::Player, square::{self, Square}};
 
 pub struct Board {
-    pub squares: [[Square; 8]; 8],
+    pub squares:  [[Square; 8]; 8],
 }
 
 impl Board {
@@ -36,7 +36,17 @@ impl Board {
         self.squares[4][4].set_player(Player::White);
     }
 
-    pub fn get_square(&self, x: usize, y:usize ) -> Square {
+    pub fn change_square(&self, x: usize, y:usize ) {
+        let mut square = self.squares[x][y];
+        square.change_player();
+    }
+
+    pub fn set_player(&self, x: usize, y:usize, player: Player) {
+        let mut square = self.squares[x][y];
+        square.set_player(player);
+    }
+
+    pub fn get_square(&self, x: usize, y:usize) -> Square {
         return self.squares[x][y];
     }
 }

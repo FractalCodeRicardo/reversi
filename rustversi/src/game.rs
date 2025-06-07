@@ -1,5 +1,5 @@
-use crate::board::Board;
-use crate::cursor::Cursor;
+use crate::board::{self, Board};
+use crate::cursor::{self, Cursor};
 use crate::player::Player;
 use crate::position::Position;
 use crate::square;
@@ -71,30 +71,51 @@ impl Game {
         positions
     }
 
-    fn do_movement(&self) {
+    pub fn do_movement(&self) {
+        let changes = self.get_all_changes();
+
+        for change in &changes {
+            let x = change.x;
+            let y = change.y;
+            self.board.change_square(x, y);
+        }
+
+        if changes.len() > 0 {
+            self.board
+                .set_player(
+                    self.cursor.x,
+                    self.cursor.y,
+                    self.current_player
+                );
+        }
+    }
+
+    fn get_all_changes(&self) -> Vec<Position> {
         let x = self.cursor.x;
         let y = self.cursor.y;
         let player = self.current_player;
 
-        let arriba = self.get_line(x, y, 0, -1);
-        let abajo = self.get_line(x, y, 0, 1);
-        let izquierda = self.get_line(x, y, -1, 0);
-        let derecha = self.get_line(x, y, 1, 0);
-        let arriba_izquierda = self.get_line(x, y, -1, -1);
-        let arriba_derecha = self.get_line(x, y, 1, -1);
-        let abajo_izquierda = self.get_line(x, y, -1, 1);
-        let abajo_derecha = self.get_line(x, y, 1, 1);
+        let up = self.get_line(x, y, 0, -1);
+        let down = self.get_line(x, y, 0, 1);
+        let left = self.get_line(x, y, -1, 0);
+        let right = self.get_line(x, y, 1, 0);
+        let up_left = self.get_line(x, y, -1, -1);
+        let up_right = self.get_line(x, y, 1, -1);
+        let down_left = self.get_line(x, y, -1, 1);
+        let down_right = self.get_line(x, y, 1, 1);
 
-        let mut cambios: Vec<Position> = Vec::new();
+        let mut changes: Vec<Position> = Vec::new();
 
-        cambios.extend(self.get_changes(arriba, player));
-        cambios.extend(self.get_changes(abajo, player   ));
-        cambios.extend(self.get_changes(izquierda, player));
-        cambios.extend(self.get_changes(derecha, player));
-        cambios.extend(self.get_changes(arriba_izquierda, player));
-        cambios.extend(self.get_changes(arriba_derecha, player));
-        cambios.extend(self.get_changes(abajo_izquierda, player));
-        cambios.extend(self.get_changes(abajo_derecha, player));
+        changes.extend(self.get_changes(up, player));
+        changes.extend(self.get_changes(down, player));
+        changes.extend(self.get_changes(left, player));
+        changes.extend(self.get_changes(right, player));
+        changes.extend(self.get_changes(up_right, player));
+        changes.extend(self.get_changes(up_left, player));
+        changes.extend(self.get_changes(down_left, player));
+        changes.extend(self.get_changes(down_right, player));
+
+        return changes;
     }
 
     fn get_changes(&self, line: Vec<Position>, player: Player) -> Vec<Position> {
