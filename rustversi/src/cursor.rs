@@ -1,10 +1,10 @@
 pub struct Cursor {
-   pub x: u8,
-   pub y: u8,
+   pub x: usize,
+   pub y: usize,
 }
 
 impl Cursor {
-    pub fn new(x: u8, y: u8) -> Self {
+    pub fn new(x: usize, y: usize) -> Self {
         Cursor { x, y }
     }
 

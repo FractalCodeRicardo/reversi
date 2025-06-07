@@ -22,7 +22,7 @@ impl Board {
 
         for row in 0..8 {
             for col in 0..8 {
-                squares[row][col] = Square::new(row as i8, col as i8); // or any constructor
+                squares[row][col] = Square::new(row as usize, col as usize); // or any constructor
             }
         }
 
@@ -34,5 +34,9 @@ impl Board {
         self.squares[3][4].set_player(Player::Black);
         self.squares[4][3].set_player(Player::Black);
         self.squares[4][4].set_player(Player::White);
+    }
+
+    pub fn get_square(&self, x: usize, y:usize ) -> Square {
+        return self.squares[x][y];
     }
 }
