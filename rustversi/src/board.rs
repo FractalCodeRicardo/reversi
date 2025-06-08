@@ -36,14 +36,12 @@ impl Board {
         self.squares[4][4].set_player(Player::White);
     }
 
-    pub fn change_square(&self, x: usize, y:usize ) {
-        let mut square = self.squares[x][y];
-        square.change_player();
+    pub fn change_square(&mut self, x: usize, y:usize ) {
+        self.squares[x][y].change_player();
     }
 
-    pub fn set_player(&self, x: usize, y:usize, player: Player) {
-        let mut square = self.squares[x][y];
-        square.set_player(player);
+    pub fn set_player(&mut self, x: usize, y:usize, player: Player) {
+        self.squares[x][y].set_player(player);
     }
 
     pub fn get_square(&self, x: usize, y:usize) -> Square {

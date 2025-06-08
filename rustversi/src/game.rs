@@ -1,8 +1,7 @@
-use crate::board::{self, Board};
-use crate::cursor::{self, Cursor};
+use crate::board::Board;
+use crate::cursor::Cursor;
 use crate::player::Player;
 use crate::position::Position;
-use crate::square;
 
 pub struct Game {
     pub board: Board,
@@ -71,7 +70,7 @@ impl Game {
         positions
     }
 
-    pub fn do_movement(&self) {
+    pub fn do_movement(&mut self) -> usize {
         let changes = self.get_all_changes();
 
         for change in &changes {
@@ -88,6 +87,8 @@ impl Game {
                     self.current_player
                 );
         }
+
+        return changes.len();
     }
 
     fn get_all_changes(&self) -> Vec<Position> {

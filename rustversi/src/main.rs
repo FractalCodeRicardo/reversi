@@ -37,7 +37,11 @@ async fn main() {
         }
 
         if is_key_released(KeyCode::Enter) {
-            game.do_movement();
+            let movements = game.do_movement();
+
+            if movements > 0 {
+                game.change_turn();
+            }
         }
 
         drawer.draw_game(&game);
