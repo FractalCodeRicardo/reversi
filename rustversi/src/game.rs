@@ -1,6 +1,6 @@
 use crate::board::Board;
 use crate::cursor::Cursor;
-use crate::player::Player;
+use crate::player::{self, Player};
 use crate::position::Position;
 
 pub struct Game {
@@ -8,6 +8,8 @@ pub struct Game {
     pub cursor: Cursor,
     pub selection: Option<Position>,
     pub current_player: Player,
+    pub white_score: usize,
+    pub black_score: usize
 }
 
 impl Game {
@@ -17,6 +19,8 @@ impl Game {
             cursor: Cursor::new(0, 0),
             board: Board::new(),
             current_player: Player::White,
+            white_score: 2,
+            black_score: 2
         }
     }
 
@@ -71,6 +75,29 @@ impl Game {
     }
 
     pub fn do_movement(&mut self) -> usize {
+        let squares_changed = self.change_squares();
+        self.update_scores(squares_changed, self.current_player);
+        return squares_changed
+    }
+
+    fn update_scores(&mut self, total: usize, player: Player) {
+
+        if total == 0 {
+            return;
+        }
+
+        if player == Player::White {
+            self.white_score += total + 1;
+            return;
+        }
+            
+        if player == Player::Black {
+            self.black_score += total + 1;
+            return;
+        }
+    }
+
+    fn change_squares(&mut self) -> usize {
         let changes = self.get_all_changes();
 
         for change in &changes {

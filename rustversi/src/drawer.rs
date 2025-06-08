@@ -17,6 +17,7 @@ impl Drawer {
     pub fn draw_game(&self, game: &Game) {
         self.draw_board(&game.board);
         self.draw_cursor(&game.cursor);
+        self.draw_score(game.white_score, game.black_score);
     }
 
     pub fn draw_cursor(&self, cursor: &Cursor) {
@@ -74,5 +75,13 @@ impl Drawer {
         draw_line(x, y, x, y + h, thickness, color);
         // Right
         draw_line(x + w, y, x + w, y + h, thickness, color);
+    }
+
+    fn draw_score(&self, white: usize, black: usize) {
+        let score_white = format!("WHITE: {}", white);
+        let score_black = format!("BLACK: {}", black);
+
+        draw_text(&score_white, 20.0, 600.0, 30.0, WHITE);
+        draw_text(&score_black, 20.0, 650.0, 30.0, WHITE);
     }
 }
